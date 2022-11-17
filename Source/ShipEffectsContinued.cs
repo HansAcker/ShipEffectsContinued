@@ -37,19 +37,6 @@ namespace ShipEffectsContinued
         FXGroup dockedGroup = new FXGroup("DockFXGroup");
         FXGroup undockedGroup = new FXGroup("DockFXGroup");
 
-#if false
-        //Settings
-        public float masterVolume = 1f;
-        public float rVolCtrl = 1f;
-        public float vVolCtrl = 1f;
-        public float rmVolCtrl = 1f;
-        public float sVolCtrl = 1f;
-        public float aVolCtrl = 0.7f;
-        public float tVolCtrl = 0.7f;
-
-        public float resistMultiplier = 1.0f;
-        public float reEntryMultiplier = 8.0f;
-#endif
         //sets
         bool rumbleSet;
         bool smallRattlesSet;
@@ -84,10 +71,6 @@ namespace ShipEffectsContinued
         float counter = 0;
 
         bool doEngineThrust;
-#if false
-        bool onlyIVA = true;
-        bool onlyIfCrewed = true;
-#endif
 
         void Start()
         {
@@ -96,9 +79,6 @@ namespace ShipEffectsContinued
                 return;
 
             LoadGroups();
-#if false
-            LoadSettings();
-#endif
 
             GameEvents.onPartCouple.Add(this.onVesselDock);
             GameEvents.onPartUndock.Add(this.onVesselUndock);
@@ -122,47 +102,6 @@ namespace ShipEffectsContinued
             dockedSet = createGroup(dockedGroup, vessel, dockedClip, false, true);
             undockedSet = createGroup(undockedGroup, vessel, undockedClip, false, true);
         }
-#if false
-        void LoadSettings()
-        {
-            bool settingsRead = false;
-            foreach (ConfigNode node in GameDatabase.Instance.GetConfigNodes("SHIPEFFECTS_SETTINGS"))
-            {
-                if (settingsRead)
-                {
-                    Debug.Log("ShipEffectscontinued: Error: Multiple nodes of SHIPEFFECTS_SETTINGS found, only the first is being used");
-                    return;
-                }
-                if (node.HasValue("OnlyInIVA"))
-                    bool.TryParse(node.GetValue("OnlyInIVA"), out onlyIVA);
-                if (node.HasValue("OnlyIfCrewed"))
-                    bool.TryParse(node.GetValue("OnlyIfCrewed"), out onlyIfCrewed);
-
-                if (node.HasValue("masterVolume"))
-                    float.TryParse(node.GetValue("masterVolume"), out masterVolume);
-                if (node.HasValue("rattleVolume"))
-                    float.TryParse(node.GetValue("rattleVolume"), out rVolCtrl);
-                if (node.HasValue("vibrationVolume"))
-                    float.TryParse(node.GetValue("vibrationVolume"), out vVolCtrl);
-                if (node.HasValue("rumbleVolume"))
-                    float.TryParse(node.GetValue("rumbleVolume"), out rmVolCtrl);
-                if (node.HasValue("thumpVolume"))
-                    float.TryParse(node.GetValue("thumpVolume"), out tVolCtrl);
-                if (node.HasValue("stressVolume"))
-                    float.TryParse(node.GetValue("stressVolume"), out sVolCtrl);
-                if (node.HasValue("atmosphereVolume"))
-                    float.TryParse(node.GetValue("atmosphereVolume"), out aVolCtrl);
-
-                if (node.HasValue("ResistMultiplier"))
-                    float.TryParse(node.GetValue("ResistMultiplier"), out resistMultiplier);
-                if (node.HasValue("ReEntryMultiplier"))
-                    float.TryParse(node.GetValue("ReEntryMultiplier"), out reEntryMultiplier);
-
-                Debug.Log("ShipEffectsContinued Volume Settings loaded");
-                //break;
-            }
-        }
-#endif
 
         public bool createGroup(FXGroup group, Vessel vessel, string clip, bool loop, bool fxBypass)
         {
