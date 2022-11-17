@@ -36,20 +36,6 @@ namespace ShipEffectsContinued
         FXGroup dockedGroup = new FXGroup("DockFXGroup");
         FXGroup undockedGroup = new FXGroup("DockFXGroup");
 
-        //sets
-        bool rumbleSet;
-        bool smallRattlesSet;
-        bool bigRattlesSet;
-        bool vibrationsSet;
-        bool atmosphereSet;
-        bool stressBigSet;
-
-        bool thumpLowSet;
-        bool thumpHeavySet;
-
-        bool dockedSet;
-        bool undockedSet;
-
         bool gamePaused = false;
 
         Vessel vessel;
@@ -88,21 +74,21 @@ namespace ShipEffectsContinued
 
         void LoadGroups()
         {
-            smallRattlesSet = createGroup(smallRattlesGroup, vessel, rattles_small, true, true);
-            bigRattlesSet = createGroup(bigRattlesGroup, vessel, rattles_big, true, true);
-            rumbleSet = createGroup(rumbleGroup, vessel, rumble, true, true);
-            vibrationsSet = createGroup(vibrationsGroup, vessel, vibrations, true, true);
-            stressBigSet = createGroup(stressBigGroup, vessel, stress_big, true, true);
-            atmosphereSet = createGroup(atmosphereGroup, vessel, atmosphere, true, true);
+            createGroup(smallRattlesGroup, vessel, rattles_small, true, true);
+            createGroup(bigRattlesGroup, vessel, rattles_big, true, true);
+            createGroup(rumbleGroup, vessel, rumble, true, true);
+            createGroup(vibrationsGroup, vessel, vibrations, true, true);
+            createGroup(stressBigGroup, vessel, stress_big, true, true);
+            createGroup(atmosphereGroup, vessel, atmosphere, true, true);
 
-            thumpLowSet = createGroup(thumpLowGroup, vessel, thump_low, false, false);
-            thumpHeavySet = createGroup(thumpHeavyGroup, vessel, thump_heavy, false, false);
+            createGroup(thumpLowGroup, vessel, thump_low, false, false);
+            createGroup(thumpHeavyGroup, vessel, thump_heavy, false, false);
 
-            dockedSet = createGroup(dockedGroup, vessel, docking, false, true);
-            undockedSet = createGroup(undockedGroup, vessel, docking, false, true);
+            createGroup(dockedGroup, vessel, docking, false, true);
+            createGroup(undockedGroup, vessel, docking, false, true);
         }
 
-        public bool createGroup(FXGroup group, Vessel vessel, string clip, bool loop, bool fxBypass)
+        void createGroup(FXGroup group, Vessel vessel, string clip, bool loop, bool fxBypass)
         {
             GameObject audioGroup = new GameObject("ShipEffects");
             audioGroup.transform.parent = vessel.gameObject.transform;
@@ -121,8 +107,6 @@ namespace ShipEffectsContinued
             group.audio.bypassEffects = fxBypass;
 
             Debug.Log("ShipEffectsContinued: " + group.name + " is Created");
-
-            return true;
         }
 
         void SoundFX(FXGroup fx, float volume, float volCtrl, float spread, bool play)
