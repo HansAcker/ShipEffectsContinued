@@ -264,24 +264,10 @@ namespace ShipEffectsContinued
 
             vResist *= HighLogic.CurrentGame.Parameters.CustomParams<SE>().resistMultiplier;
 
-            bool isCrewed = false;
-
-            //don't search if not necessary
-            if (HighLogic.CurrentGame.Parameters.CustomParams<SE>().OnlyIfCrewed)
-            {
-                foreach (Part part in vessel.parts)
-                {
-                    if (part.protoModuleCrew.Count >= 1)
-                    {
-                        isCrewed = true;
-                    }
-                }
-            }
-
             if (!gamePaused)
             {
 
-                if ((!HighLogic.CurrentGame.Parameters.CustomParams<SE>().OnlyIfCrewed || isCrewed) && !MapView.MapIsEnabled && (HighLogic.CurrentGame.Parameters.CustomParams<SE>().OnlyInIVA == false || InternalCamera.Instance.isActive))
+                if ((!HighLogic.CurrentGame.Parameters.CustomParams<SE>().OnlyIfCrewed || vessel.crewedParts > 0) && !MapView.MapIsEnabled && (HighLogic.CurrentGame.Parameters.CustomParams<SE>().OnlyInIVA == false || InternalCamera.Instance.isActive))
                 {
                     //wind and pressure?
                     if (surfSpeed > 10 || vesselRot > 1.5f)
