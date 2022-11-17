@@ -10,18 +10,17 @@ namespace ShipEffectsContinued
     public class SEMaster : MonoBehaviour
     {
         //soundnames
-        string small_rattles = "ShipEffectsContinued/Sounds/small_rattles";
-        string big_rattles = "ShipEffectsContinued/Sounds/big_rattles";
-        string rumble = "ShipEffectsContinued/Sounds/rumble";
-        string vibrations = "ShipEffectsContinued/Sounds/vibrations";
-        string stress_big = "ShipEffectsContinued/Sounds/metalstress";
-        string atmos_normal = "ShipEffectsContinued/Sounds/atmo";
+        const string rattles_small = "ShipEffectsContinued/Sounds/rattles_small";
+        const string rattles_big = "ShipEffectsContinued/Sounds/rattles_big";
+        const string rumble = "ShipEffectsContinued/Sounds/rumble";
+        const string vibrations = "ShipEffectsContinued/Sounds/vibrations";
+        const string stress_big = "ShipEffectsContinued/Sounds/stress_big";
+        const string atmosphere = "ShipEffectsContinued/Sounds/atmosphere";
 
-        public string thumpLowSound = "ShipEffectsContinued/Sounds/thumplow";
-        public string thumpHeavySound = "ShipEffectsContinued/Sounds/thump";
+        const string thump_low = "ShipEffectsContinued/Sounds/thump_low";
+        const string thump_heavy = "ShipEffectsContinued/Sounds/thump_heavy";
 
-        public string dockedClip = "ShipEffectsContinued/Sounds/docking";
-        public string undockedClip = "ShipEffectsContinued/Sounds/docking";
+        const string docking = "ShipEffectsContinued/Sounds/docking";
 
         //groups
         FXGroup smallRattlesGroup = new FXGroup("smallRattlesFXGroup");
@@ -89,18 +88,18 @@ namespace ShipEffectsContinued
 
         void LoadGroups()
         {
-            smallRattlesSet = createGroup(smallRattlesGroup, vessel, small_rattles, true, true);
-            bigRattlesSet = createGroup(bigRattlesGroup, vessel, big_rattles, true, true);
+            smallRattlesSet = createGroup(smallRattlesGroup, vessel, rattles_small, true, true);
+            bigRattlesSet = createGroup(bigRattlesGroup, vessel, rattles_big, true, true);
             rumbleSet = createGroup(rumbleGroup, vessel, rumble, true, true);
             vibrationsSet = createGroup(vibrationsGroup, vessel, vibrations, true, true);
             stressBigSet = createGroup(stressBigGroup, vessel, stress_big, true, true);
-            atmosphereSet = createGroup(atmosphereGroup, vessel, atmos_normal, true, true);
+            atmosphereSet = createGroup(atmosphereGroup, vessel, atmosphere, true, true);
 
-            thumpLowSet = createGroup(thumpLowGroup, vessel, thumpLowSound, false, false);
-            thumpHeavySet = createGroup(thumpHeavyGroup, vessel, thumpHeavySound, false, false);
+            thumpLowSet = createGroup(thumpLowGroup, vessel, thump_low, false, false);
+            thumpHeavySet = createGroup(thumpHeavyGroup, vessel, thump_heavy, false, false);
 
-            dockedSet = createGroup(dockedGroup, vessel, dockedClip, false, true);
-            undockedSet = createGroup(undockedGroup, vessel, undockedClip, false, true);
+            dockedSet = createGroup(dockedGroup, vessel, docking, false, true);
+            undockedSet = createGroup(undockedGroup, vessel, docking, false, true);
         }
 
         public bool createGroup(FXGroup group, Vessel vessel, string clip, bool loop, bool fxBypass)
