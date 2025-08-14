@@ -286,7 +286,7 @@ namespace ShipEffectsContinued
             }
 
             //thickeratmosphericsound in thicker atmospheres
-            if (atmDensity > 0)
+            if (atmDensity > 0 && atmosphereGroup != null && atmosphereGroup.audio != null)
             {
                 float airPressure = 1f / atmDensity;
                 atmosphereGroup.audio.pitch = Mathf.Clamp(airPressure, 0, 1.5f);
